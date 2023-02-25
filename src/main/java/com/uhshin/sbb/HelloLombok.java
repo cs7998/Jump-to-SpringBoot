@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-//etter
+//@Setter
 public class HelloLombok {
 
 	private final String hello;
