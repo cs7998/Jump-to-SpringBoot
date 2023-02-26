@@ -1,6 +1,8 @@
-package com.uhshin.sbb;
+package com.uhshin.sbb.answer;
 
 import java.time.LocalDateTime;
+
+import com.uhshin.sbb.question.Question;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

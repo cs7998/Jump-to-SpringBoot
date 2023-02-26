@@ -1,7 +1,9 @@
-package com.uhshin.sbb;
+package com.uhshin.sbb.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.uhshin.sbb.answer.Answer;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

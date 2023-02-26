@@ -13,6 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.uhshin.sbb.answer.Answer;
+import com.uhshin.sbb.answer.AnswerRepository;
+import com.uhshin.sbb.question.Question;
+import com.uhshin.sbb.question.QuestionRepository;
+
 
 @SpringBootTest
 class SbbApplicationTests {

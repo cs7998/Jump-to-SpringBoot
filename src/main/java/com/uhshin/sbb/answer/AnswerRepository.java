@@ -1,4 +1,4 @@
-package com.uhshin.sbb;
+package com.uhshin.sbb.answer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

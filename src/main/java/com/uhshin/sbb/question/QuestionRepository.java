@@ -1,4 +1,4 @@
-package com.uhshin.sbb;
+package com.uhshin.sbb.question;
 
 import java.util.List;
 
