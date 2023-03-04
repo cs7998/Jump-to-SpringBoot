@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
+@RequestMapping("/question")
 @RequiredArgsConstructor
 @Controller
 public class QuestionController {
@@ -17,7 +19,7 @@ public class QuestionController {
 	private final QuestionService questionService;
 	//private final QuestionRepository questionRepository;
 	
-	@GetMapping("/question/list")
+	@GetMapping("/list")
 	public String list(Model model){
 		List<Question> questionList = this.questionService.getList();
 		//List<Question> questionList = this.questionRepository.findAll();
@@ -26,14 +28,14 @@ public class QuestionController {
 		return "question_list";
 	}
 	
-//	@GetMapping("/question/list")
+//	@GetMapping("/list")
 //	//@ResponseBody
 //	public String list() {
 //		return "question_list";  // 템플릿 파일의 이름이다.
 //		// return "question list"
 //	}
 	
-	@GetMapping(value = "/question/detail/{id}")
+	@GetMapping(value = "/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		Question question = this.questionService.getQuestion(id);
 		model.addAttribute("question", question);
