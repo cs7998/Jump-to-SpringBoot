@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 //import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,4 +32,11 @@ public class QuestionController {
 //		return "question_list";  // 템플릿 파일의 이름이다.
 //		// return "question list"
 //	}
+	
+	@GetMapping(value = "/question/detail/{id}")
+	public String detail(Model model, @PathVariable("id") Integer id) {
+		Question question = this.questionService.getQuestion(id);
+		model.addAttribute("question", question);
+		return "question_detail";
+	}
 }
