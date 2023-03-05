@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 //import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,5 +42,17 @@ public class QuestionController {
 		Question question = this.questionService.getQuestion(id);
 		model.addAttribute("question", question);
 		return "question_detail";
+	}
+	
+	@GetMapping("/create") // GET 으로 질문 양식 가져오기
+	public String questionCreate() {
+		return "question_form";
+	}
+	
+	@PostMapping("/create") // POST 로 질문 저장하기
+	public String questionCreate(@RequestParam  String subject, @RequestParam String content) {
+		// TODO 질문을 저장한다.
+		this.questionService.create(subject, content);
+		return "redirect:/question/list";	// 질문 저장후 질문 목록으로 이동한다.
 	}
 }
