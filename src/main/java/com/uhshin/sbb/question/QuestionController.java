@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.Page;
 
 import com.uhshin.sbb.answer.AnswerForm;
 
@@ -26,11 +28,13 @@ public class QuestionController {
 	//private final QuestionRepository questionRepository;
 	
 	@GetMapping("/list")
-	public String list(Model model){
-		List<Question> questionList = this.questionService.getList();
+	public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+		Page<Question> paging = this.questionService.getList(page);
+		model.addAttribute("paging", paging);
+		//List<Question> questionList = this.questionService.getList();
 		//List<Question> questionList = this.questionRepository.findAll();
 		// 실제 프로젝트에서 이렇게 하면 안될듯 한다.. 질문 개수가 많아지면 당연히 성능에 문제가 생기겠지..
-		model.addAttribute("questionList", questionList);
+		//model.addAttribute("questionList", questionList);
 		return "question_list";
 	}
 	
