@@ -17,6 +17,7 @@ import com.uhshin.sbb.answer.Answer;
 import com.uhshin.sbb.answer.AnswerRepository;
 import com.uhshin.sbb.question.Question;
 import com.uhshin.sbb.question.QuestionRepository;
+import com.uhshin.sbb.question.QuestionService;
 
 
 @SpringBootTest
@@ -26,14 +27,14 @@ class SbbApplicationTests {
 //	void contextLoads() {
 //	}
 	
-	@Autowired
-	private QuestionRepository questionRepository;
-	
-	@Autowired
-	private AnswerRepository answerRepository;
+//	@Autowired
+//	private QuestionRepository questionRepository;
+//	
+//	@Autowired
+//	private AnswerRepository answerRepository;
 
-	@Test
-	void testJpa() {
+//	@Test
+//	void testJpa() {
 //  질문 생성
 //		Question q1 = new Question();
 //		q1.setSubject("sbb가 뭐예요?");
@@ -105,19 +106,31 @@ class SbbApplicationTests {
 //		assertTrue(oa.isPresent());
 //		Answer a = oa.get();
 //		assertEquals(2, a.getQuestion().getId());
-	}
+//	}
 	
-	@Transactional
-	@Test
-	void testGetAnswerListQuestion() {
-		// 질문에 연결된 답변 찾기 - 질문 객체로 부터 답변 리스트 구하는 테스트 코드
-		Optional<Question> oq = this.questionRepository.findById(2);
-		assertTrue(oq.isPresent());
-		Question q = oq.get();
-		
-		List<Answer> answerList = q.getAnswerList();
-		
-		assertEquals(1, answerList.size());
-		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
-	}
+//	@Transactional
+//	@Test
+//	void testGetAnswerListQuestion() {
+//		// 질문에 연결된 답변 찾기 - 질문 객체로 부터 답변 리스트 구하는 테스트 코드
+//		Optional<Question> oq = this.questionRepository.findById(2);
+//		assertTrue(oq.isPresent());
+//		Question q = oq.get();
+//		
+//		List<Answer> answerList = q.getAnswerList();
+//		
+//		assertEquals(1, answerList.size());
+//		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
+//	}
+	
+    @Autowired
+    private QuestionService questionService;
+    
+    @Test
+    void testJpa() {
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            this.questionService.create(subject, content);
+        }
+    }
 }
