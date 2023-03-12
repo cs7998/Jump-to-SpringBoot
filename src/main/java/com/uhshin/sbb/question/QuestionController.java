@@ -3,6 +3,7 @@ package com.uhshin.sbb.question;
 import java.security.Principal;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,13 +55,14 @@ public class QuestionController {
 		return "question_detail";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/create") // GET 으로 질문 양식 가져오기
 	public String questionCreate(QuestionForm questionForm) {
 		return "question_form";
 	}
 	
-	// POST 로 질문 저장하기
-	@PostMapping("/create") 
+	@PreAuthorize("isAuthenticated()")  // 로그인이 필요한 메서드에 애너테이션 적용
+	@PostMapping("/create")	// POST 로 질문 저장하기
 	public String questionCreate(@Valid QuestionForm questionForm,
 		BindingResult bindingResult, Principal principal) {
 		// TODO 질문을 저장한다.
