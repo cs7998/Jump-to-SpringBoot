@@ -111,6 +111,6 @@ public class QuestionController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");
 		}
 		this.questionService.delete(question);
-		return "redirct:/";
+		return "redirect:/";
 	}
 }
