@@ -33,9 +33,11 @@ public class QuestionController {
 	//private final QuestionRepository questionRepository;
 	
 	@GetMapping("/list")
-	public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
-		Page<Question> paging = this.questionService.getList(page);
+	public String list(Model model, @RequestParam(value="page", defaultValue="0") int page, 
+		@RequestParam(value = "kw", defaultValue = "") String kw) {
+		Page<Question> paging = this.questionService.getList(page, kw);
 		model.addAttribute("paging", paging);
+		model.addAttribute("kw", kw);
 		//List<Question> questionList = this.questionService.getList();
 		//List<Question> questionList = this.questionRepository.findAll();
 		// 실제 프로젝트에서 이렇게 하면 안될듯 한다.. 질문 개수가 많아지면 당연히 성능에 문제가 생기겠지..
