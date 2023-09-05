@@ -1,5 +1,7 @@
 Jump to SpringBoot 실습
 
+https://wikidocs.net/book/7601
+
 ##Chapater 02 스프링부트 기본 요소 익히기
 
 ###2-03 JPA
